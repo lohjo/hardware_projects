@@ -8,7 +8,14 @@
       "mcp__openscad__init",
       "PowerShell(& \"C:\\\\Program Files\\\\OpenSCAD\\\\openscad.exe\" --version 2>&1; Get-ChildItem \"C:\\\\Program Files\\\\OpenSCAD\\\\\" | Select-Object Name | Format-Table -AutoSize)",
       "PowerShell(& \"C:\\\\Program Files\\\\OpenSCAD\\\\openscad.exe\" --info 2>&1 | Select-Object -First 20; Get-ChildItem \"C:\\\\Program Files\\\\OpenSCAD\\\\libraries\" | Select-Object Name)",
-      "PowerShell(Test-Path *)"
+      "PowerShell(Test-Path *)",
+      "PowerShell($scad=\"C:\\\\Program Files\\\\OpenSCAD\\\\openscad.exe\"; $f=\"C:\\\\Users\\\\User\\\\Projects\\\\GitHub\\\\hardware_projects\\\\src\\\\cad\\\\quickly_draw_001.scad\"; & $scad --check-parameters true --hardwarnings $f -o \"$env:TEMP\\\\syntax_check.echo\" 2>&1 | Select-Object -First 40)",
+      "PowerShell(Out-Null *)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(Get-Content *)",
+      "Bash(xxd)",
+      "PowerShell($f=\"C:\\\\Users\\\\User\\\\Projects\\\\GitHub\\\\hardware_projects\\\\src\\\\cad\\\\quickly_draw_004.scad\"; $bytes=[System.IO.File]::ReadAllBytes\\($f\\); if\\($bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF\\){ $stripped=$bytes[3..\\($bytes.Length-1\\)]; [System.IO.File]::WriteAllBytes\\($f,$stripped\\); Write-Output \"BOM stripped\" } else {Write-Output \"no BOM\"})",
+      "Bash('/c/Program Files/OpenSCAD/openscad.exe' -o C:/Users/User/Projects/GitHub/hardware_projects/src/stl/quickly_draw_full_assembly.stl C:/Users/User/Projects/GitHub/hardware_projects/src/cad/quickly_draw_004.scad)"
     ]
   }
 }
