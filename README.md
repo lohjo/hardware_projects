@@ -1,98 +1,103 @@
-# OpenSCAD Agent
+# Hardware Projects
 
-A Claude Code-powered 3D modeling agent environment for creating 3D printable designs using OpenSCAD.
+A collection of open-source hardware designs and 3D-printable devices for real-world applications.
 
-## Overview
+## Projects
 
-This project provides an AI-assisted workflow for designing 3D models through natural language. Describe what you want to create, and the agent will iteratively generate OpenSCAD code, render previews, and refine the design based on your feedback.
+### 🩸 [Lifeline — Quickly-Draw!](./lifeline/)
 
-## Features
+**A fully 3D-printable, open-source compact blood sampler for disaster response and low-resource settings**
 
-- **Natural language 3D modeling**: Describe objects in plain English and get OpenSCAD code
-- **Iterative refinement**: Each design iteration is versioned (e.g., `model_001.scad`, `model_002.scad`)
-- **Visual feedback loop**: Automatic PNG rendering lets the agent see and self-correct its work
-- **Geometry validation**: STL export checks for non-manifold geometry and other printability issues
+Sub-$7 vacuum-based microneedle blood sampling device requiring no electricity, no trained operator, and no cold-chain infrastructure. Integrates LSOVA bellows vacuum actuation, spring-loaded 5×5 microneedle array, passive check-valve microfluidics, and standard VacuTube laboratory compatibility.
 
-## Requirements
+- **Vacuum pressure:** –80 to –96 kPa
+- **Sample volume:** 4 mL
+- **Pain reduction:** 95% vs. conventional venipuncture
+- **Deployment ready for:** disaster-response field kits, LMIC community health programs, remote triage
+- **Cost target:** <$7 per unit
 
-- [Claude Code](https://claude.ai/claude-code) CLI
-- [OpenSCAD](https://openscad.org/) installed locally
+**Status:** MVP design, open-source release  
+**License:** CC-BY-4.0  
+[→ Full project documentation](./lifeline/README.md)
 
-## Usage
+---
 
-Start Claude Code in this directory and use the `/openscad` skill:
+## Additional Projects
 
-```
-/openscad make a phone stand
-```
+*More projects coming soon (TBC)*
 
-The agent will:
-1. Create `phone_stand_001.scad` with an initial design
-2. Render `phone_stand_001.png` to preview the result
-3. Evaluate the design and iterate if needed
-4. Continue refining until the design meets your requirements
-5. Export to STL with geometry validation when ready
+---
 
-## Skills
-
-| Skill | Description |
-|-------|-------------|
-| `/openscad` | Create versioned OpenSCAD files with automatic rendering and iteration |
-| `/preview-scad` | Render any `.scad` file to PNG for visual inspection |
-| `/export-stl` | Convert finalized `.scad` files to STL with geometry validation |
-
-### Workflow
+## Repository Structure
 
 ```
-/openscad → /preview-scad → /export-stl
-    ↑______________|              ↓
-    (iterate until correct)   Geometry validation
-                                  ↓
-                            Ready for slicer
+hardware_projects/
+├── lifeline/                    # Blood sampler project
+│   ├── README.md               # Project-specific documentation
+│   ├── quickly-draw-report.md  # Technical report
+│   ├── src/
+│   │   ├── cad/                # OpenSCAD source files (.scad)
+│   │   ├── renders/            # Preview PNG images
+│   │   ├── stl/                # Export-ready STL files
+│   │   └── prompts/            # Design documentation & prompts
+│   └── sketches/               # Reference sketches
+├── README.md                    # This file
+├── CLAUDE.md                    # OpenSCAD agent instructions
+└── [other-projects]/            # Additional hardware projects (TBC)
 ```
 
-## File Structure
+## Open Source & Licensing
 
-```
-.
-├── .claude/
-│   ├── settings.local.json    # Claude Code permissions
-│   └── skills/
-│       ├── openscad/          # Main modeling skill
-│       ├── preview-scad/      # PNG rendering skill
-│       └── export-stl/        # STL export with validation
-├── CLAUDE.md                  # Agent instructions
-└── *.scad / *.png / *.stl     # Generated models, previews, and exports
-```
+All projects in this repository are released under open-source licenses that permit:
+- **Free use and modification** for any purpose (research, commercial, humanitarian)
+- **Local manufacturing** on consumer 3D printers
+- **Community contributions** via pull requests
 
-## Example Session
+Each project includes its own license file. Default license is **Creative Commons Attribution 4.0 International (CC-BY-4.0)** unless otherwise specified.
 
-```
-> /openscad make a mini piano
+## Contributing
 
-Creating mini_piano_001.scad...
-[renders preview]
-The initial design has basic keys but looks toy-like.
+Contributions are welcome! To contribute:
 
-> make it more realistic
+1. **Report issues:** Found a bug or have an improvement? Open an issue.
+2. **Submit designs:** Have a hardware design to share? Submit a pull request with:
+   - Complete project README
+   - Design files (OpenSCAD source, STL exports)
+   - BOM and fabrication instructions
+   - Renders/images for visualization
+3. **Improve documentation:** Help make projects clearer and more accessible.
 
-Creating mini_piano_002.scad...
-[renders and compares with 001]
-Added rounded edges, proper proportions, and pedals.
+## Getting Started
 
-> the keys are too hidden
+### For Designers Using Claude Code
 
-Creating mini_piano_003.scad...
-[renders and compares]
-Recessed the upper cabinet so the keyboard is more visible.
+This repository includes OpenSCAD agent skills for iterative 3D model design:
 
-> export it
+- **`/openscad`** — Create versioned parametric designs with automatic rendering
+- **`/preview-scad`** — Render `.scad` files to PNG for visual verification
+- **`/export-stl`** — Export finalized models to STL with geometry validation
 
-Exporting mini_piano_003.stl...
-Geometry validation: PASSED
-Ready for slicing!
-```
+See [CLAUDE.md](./CLAUDE.md) for complete workflow instructions.
 
-## License
+### For Builders & Manufacturers
 
-MIT
+Each project includes:
+- **STL files** ready for slicing and printing
+- **BOM (Bill of Materials)** with supplier links and cost estimates
+- **Fabrication guide** with print settings and assembly instructions
+- **CAD source files** in OpenSCAD for customization
+
+Start with any project's README to download files and begin building.
+
+---
+
+## Contact & Community
+
+**GitHub:** This repository  
+**License:** See individual project directories  
+**Contributing:** Pull requests and issues welcome  
+
+---
+
+**Last Updated:** April 2026  
+**Status:** Active development
